@@ -13,16 +13,18 @@
               <h1>Movie</h1>
                 <h3>{{ movie.title }}</h3>
                 <li>original title:{{ movie.original_title }}</li>
-                <li>Lingua: {{ movie.original_language }}</li>
+                <li v-if="movie.original_language === 'en'">Lingua
+                <img src="@/assets/bandiera inglese.png" width="20px"></li>
+                <li v-else>Lingua <flag :iso="movie.original_language" /></li>
                 <li>Voto: {{ movie.vote_average }}</li>
              
             </ul>
-            <!-- /.card -->
+            
           </div>
-          <!-- /.cols -->
+          
         </div>
       </div>
-      <!-- /.container -->
+      
     </main>
   </div>
 </template>
