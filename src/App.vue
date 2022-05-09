@@ -27,7 +27,8 @@
                 Lingua originale <img src="@/assets/bandiera inglese.png" width="20px" />
               </li>
               <li v-else>Lingua originale <flag :iso="movie.original_language" /></li>
-              <li>Voto: {{ movie.vote_average }}</li>
+              <Rate :length="5" :value="starsCalc(movie.vote_average)"></Rate>
+              <li>Voto {{starsCalc(movie.vote_average)}}</li>
             </ul>
           </div>
         </div>
@@ -50,7 +51,11 @@
                 Lingua originale <img src="@/assets/bandiera inglese.png" width="20px" />
               </li>
               <li v-else>Lingua <flag :iso="serie.original_language" /></li>
-              <li>Voto: {{ serie.vote_average }}</li>
+              <li> Voto {{starsCalc(serie.vote_average)}} </li>
+              <Rate :length="5" :value="starsCalc(serie.vote_average)"></Rate>
+              <font-awesome-icon icon="fa-solid fa-star" />
+              
+              
             </ul>
           </div>
         </div>
@@ -61,10 +66,13 @@
 
 <script>
 import axios from "axios";
+import Rate from "../node_modules/vue-rate/src/Rate.vue"
 
 export default {
   name: "App",
-
+  components:{
+    Rate
+  },  
   data() {
     return {
       Movies_URL:
@@ -78,8 +86,14 @@ export default {
       loading: true,
     };
   },
-  computed: {},
+  computed: {
+      
+  },
   methods: {
+    starsCalc(vote){
+            return Math.round(Number(vote) / 2);     // funzione che divide il punteggio totale / 2 -> il punteggio così sarà sulla base di max 5 stelline 
+        },
+
     callApi() {
       this.callApiMovies(), this.callApiSeries();
     },
