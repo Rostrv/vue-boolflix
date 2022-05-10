@@ -1,9 +1,13 @@
 <template>
   <div id="app">
-    <header class="p-3">
-      <input v-model="query" type="text" />
-      <button @click="callApi">Search</button>
+    <header class="p-3 d-flex align-items-center justify-content-between">
+      <img src="@/assets/rosflix.png" alt="">
+      <div>
+        <input v-model="query" type="text" />
+      <button class="btn btn-danger ms-2" @click="callApi">Search</button>
+      </div>
     </header>
+
     <main>
       <div class="container py-4">
         <div class="row">
@@ -13,8 +17,9 @@
             :key="movie.id"
           >
             <h1>Movie</h1>
+            <img v-if="movie.poster_path === null" src="@/assets/not-found.png" width="200px" height="300px">
             <img
-              :src="'http://image.tmdb.org/t/p/w200/' + movie.poster_path"
+               v-else :src="'http://image.tmdb.org/t/p/w200/' + movie.poster_path"
               alt=""
             />
 
@@ -39,8 +44,9 @@
             :key="serie.id"
           >
             <h1>Series</h1>
+            <img v-if="serie.poster_path === null" src="@/assets/not-found.png" width="200px" height="300px">
             <img
-              :src="'http://image.tmdb.org/t/p/w200/' + serie.poster_path"
+              v-else :src="'http://image.tmdb.org/t/p/w200/' + serie.poster_path"
               alt=""
             />
             <ul class="">
@@ -53,7 +59,7 @@
               <li v-else>Lingua <flag :iso="serie.original_language" /></li>
               <li> Voto {{starsCalc(serie.vote_average)}} </li>
               <Rate :length="5" :value="starsCalc(serie.vote_average)"></Rate>
-              <font-awesome-icon icon="fa-solid fa-star" />
+              
               
               
             </ul>
