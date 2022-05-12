@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <header
+    <SiteHeader />
+    <SiteMain />
+   <!--  <header
       class="p-3 d-flex align-items-center justify-content-between bg-black"
     >
       <img src="@/assets/rosflix.png" alt="" />
@@ -9,7 +11,6 @@
         <button class="btn btn-danger ms-3" @click="callApi">Search</button>
       </div>
     </header>
-
     <main>
       <div class="container-fluid py-4">
         <div class="row justify-content-evenly">
@@ -119,20 +120,24 @@
           </div>
         </div>
       </div>
-    </main>
+    </main> -->
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import Rate from "../node_modules/vue-rate/src/Rate.vue";
+import SiteHeader from "./components/SiteHeader.vue";
+import SiteMain from "./components/SiteMain.vue";
+/* import axios from "axios";
+import Rate from "../node_modules/vue-rate/src/Rate.vue"; */
 
 export default {
   name: "App",
   components: {
-    Rate,
+   // Rate,
+   SiteHeader,
+   SiteMain
   },
-  data() {
+  /* data() {
     return {
       Movies_URL:
         "https://api.themoviedb.org/3/search/movie?api_key=99bdc6e199d0021098cc0e8826508ec8&language=it-IT&page=1&include_adult=false&query=",
@@ -184,7 +189,7 @@ export default {
           this.error = `Sorry There is a problem in Series ${error}`;
         });
     },
-  },
+  }, */
 };
 </script>
 
@@ -218,7 +223,7 @@ p {
   height: 800px;
 }
 
-.btn:hover{
+/* .btn:hover{
   box-shadow: 0px 0px 10px 10px rgba(255, 0, 0, 0.847);
 }
 
@@ -276,5 +281,5 @@ height: 150px;
   width: 100%;
   height: 100%;
   padding: 20px;
-}
+} */
 </style>
